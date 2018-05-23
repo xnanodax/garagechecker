@@ -1,5 +1,14 @@
 # Raspberry Interface
 
+## General Notes
+
++ MongoDb
+    + noSql version of postgresql
++ E
++ R react
++ Node
+    + rails' rack
+
 ## Connecting to Raspberry 
 
 + Connect raspberry pi to [ssh][connect-ssh]
