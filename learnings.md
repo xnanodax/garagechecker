@@ -28,26 +28,24 @@
 + Install Programs
   + `sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer`
 
+## Common Linux Commands
++ `df -h`: Find how much memory has been used
+
 ## Raspberry Pi Connection
 
 + Load raspberry pi w/ vnc viewer[gui]
-  + `ssh pi@192.168.2.2`
+  + `ssh pi@192.168.2.2` or `ssh pi@raspberrypi.local`
   + `vncserver :10`: you can use any port number after the colon
   + using vnc viewer, connect to `192.168.2.2:10`
 
 ## Steps
 
-- [ ] Connect Raspberry Pi Headless with router
-- [ ] Turn on Wifi
+- [x] Connect Raspberry Pi Headless with router (06/01/18)
+- [x] Turn on Wifi (06/01/18)
 - [ ] Connect backend raspberry pi to post to mongo db
   - [ ] pass params into axios or ajax to create post
   - [ ] use pymongo
 - [ ] read latest entry from mongodb
-
-## Turning on WIFI
-
-  + `sudo apt-get update`
-  + `sudo apt-get upgrade` takes so long!
 
 ## Python Program
 
