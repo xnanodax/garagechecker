@@ -37,6 +37,7 @@
   + `ssh pi@192.168.2.2` or `ssh pi@raspberrypi.local`
   + `vncserver :10`: you can use any port number after the colon
   + using vnc viewer, connect to `192.168.2.2:10`
++ Turn off: `sudo shutdown -h now`
 
 ## Steps
 
