@@ -1,18 +1,15 @@
 import time
 import RPi.GPIO as GPIO
 
-print("starting")
-
-GPIO.setmode(GPIO.BOARD)
 red=11
-GPIO.setup(red,GPIO.OUT)
-GPIO.output(red, True)
-time.sleep(1)
-GPIO.output(red, False)
-time.sleep(1)
-GPIO.output(red, True)
-time.sleep(1)
-GPIO.output(red, False)
-GPIO.cleanup()
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(red, GPIO.OUT)
 
-print("ending")
+print(">> starting file")
+
+try:
+	while True:
+		GPIO.output(red, True)
+except (KeyboardInterrupt, SystemExit):
+	GPIO.cleanup()
+	print("\n>> ending file")
