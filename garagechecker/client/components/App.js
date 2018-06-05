@@ -1,22 +1,18 @@
 import React from 'react';
 import '../css/App.css';
 import { Route } from 'react-router-dom';
-import Latest from './Latest';
+import LatestContainer from './Latest';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Garage Checker</h1>
-        </header>
+        <h1 className="App-title">Garage Checker</h1>
 
 
       
-        <Route path='/latest' component={Latest} />
+        <Route path='/' component={LatestContainer} />
       </div>
-      
-
     );
   }
 }
