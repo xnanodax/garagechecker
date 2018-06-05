@@ -1,17 +1,17 @@
 import time
 import RPi.GPIO as GPIO
 
-red=11
+led=11
 status=13
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(red, GPIO.OUT)
+GPIO.setup(led, GPIO.OUT)
 GPIO.setup(status, GPIO.IN)
 
 print(">> starting file")
 
 old_status = GPIO.input(status)
 
-GPIO.output(red, True)
+GPIO.output(led, True)
 curr_status = GPIO.input(status)
 time.sleep(2)
 
@@ -28,6 +28,6 @@ try:
 		curr_status = GPIO.input(status)
 		time.sleep(0.05)
 except (KeyboardInterrupt, SystemExit):
-	GPIO.output(red, False)
+	GPIO.output(led, False)
 	GPIO.cleanup()
 	print("\n>> ending file")

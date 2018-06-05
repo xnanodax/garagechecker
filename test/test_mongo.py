@@ -19,13 +19,14 @@ collection.create_index('date')
 # time posted in is PST
 post = {
     "status": "true",
-    "date": datetime.datetime.now(),
+    "created_at": datetime.datetime.now(),
 }
 
 # insert entry into db
-# post_id = collection.insert_one(post).inserted_id
-# print(post_id)
+post_id = collection.insert_one(post).inserted_id
+print(post_id)
 
-last_entry = collection.find_one(sort=[('date', pymongo.DESCENDING)])
-print(last_entry)
+# read entry from db
+# last_entry = collection.find_one(sort=[('date', pymongo.DESCENDING)])
+# print(last_entry)
 
