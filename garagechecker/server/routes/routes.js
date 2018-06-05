@@ -4,9 +4,13 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var Record = require('../../models/Record');
 
-router.get('/', function(req, res){
+router.get('/', (req, res) => {
   res.render('index')
 });
+
+router.get('/latest', (req, res) => {
+  res.render('index')
+})
 
 router.get('/api/latest', (req, res) => {
    Record.findOne({}, {}, { sort: { '_id': -1 } }, function(err, expenses) {
@@ -17,6 +21,8 @@ router.get('/api/latest', (req, res) => {
     }
    });
 })
+
+
 
 module.exports = router;
 

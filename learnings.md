@@ -11,6 +11,8 @@
 + Node
   + rails' rack
 
++ `client` directory is the `frontend` folder
+
 ## Raspberry Pi Set Up
 
 + Models Avaliable
@@ -66,3 +68,4 @@ GPIO.cleanup()
 
 [connect-ssh]:https://medium.com/@tzhenghao/how-to-ssh-into-your-raspberry-pi-with-a-mac-and-ethernet-cable-636a197d055
 [gui]:https://www.raspberrypi.org/documentation/remote-access/vnc/README.md
+

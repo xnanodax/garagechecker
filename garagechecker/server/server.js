@@ -2,7 +2,6 @@ var express = require('express');
 var router = require('./routes/routes')
 var path = require('path');
 var app = express();
-
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
