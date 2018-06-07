@@ -1,5 +1,7 @@
 import pymongo
 import datetime
+from pytz import timezone
+import pytz
 
 client = pymongo.MongoClient()
 
@@ -13,13 +15,13 @@ connection = pymongo.MongoClient(DB_HOST, DB_PORT)
 db = connection[DB_NAME]
 db.authenticate(DB_USER, DB_PASS)
 
-collection = db.garagechecker_dev
+collection = db.records
 collection.create_index('date')
 
 # time posted in is PST
 post = {
-    "status": "true",
-    "created_at": datetime.datetime.now(),
+    "status": "True",
+    "created_at": datetime.datetime.now().astimezone(timezone('US/Pacific')),
 }
 
 # insert entry into db

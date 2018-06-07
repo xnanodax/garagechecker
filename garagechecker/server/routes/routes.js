@@ -26,19 +26,19 @@ router.get('/api/latest', (req, res) => {
 
 module.exports = router;
 
-// router.post('/api/insert', (req,res) => {
-//   var record = new Record();
-//   record.status = 'True';
-//   record.created_at = new Date;
+router.post('/api/insert', (req,res) => {
+  var record = new Record();
+  record.status = 'True';
+  record.created_at = new Date;
 
-//   record.save(err => {
-//       if (err)
-//         res.send(err);
-//       res.send('record successfully added!');
-//   });
+  record.save(err => {
+      if (err)
+        res.send(err);
+      res.send('record successfully added!');
+  });
 
-//   res.render('index')
-// })
+  res.render('index')
+})
 
 // router.get('/getAll', (req, res) => {
 //   var monthRec = req.query.month;
