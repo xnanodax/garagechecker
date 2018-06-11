@@ -1,13 +1,25 @@
 import React from 'react';
 import UpdateStatus from './Loading';
+import socketIOClient from 'socket.io-client';
 
 class GarageChecker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isClosed: "",
-      updatedAt: ""
+      updatedAt: "",
+      endpoint: "http://127.0.0.1:4001",
+      color: "white"
     };
+  }
+
+  send() {
+    const socket = socketIOClient(this.state.endpoint);
+    socket.emit('change color', this.state.color)
+  }
+
+  setColor(color) {
+    this.setState({ color }, this.send)
   }
 
   formatTime(date) {
@@ -41,11 +53,21 @@ class GarageChecker extends React.Component {
   render() {
     let border = this.state.isClosed === "True" ? "border green" : "border red";
     let time = this.state.updatedAt === "" ? false : this.state.updatedAt;
+    const socket = socketIOClient(this.state.endpoint);
+
+    socket.on('change color', (color)=> {
+      document.body.style.backgroundColor = color;
+    })
 
     return (
       <div className={border}>
         <h2 className="title">Garage Checker</h2>
         <UpdateStatus time={time}/>
+
+        <div style={{ textAlign: "center" }}>
+          <button id="gray" onClick={() => this.setColor('gray')}>Gray</button>
+          <button id="white" onClick={() => this.setColor('white')}>White</button>
+        </div>
       </div>
     );
   }

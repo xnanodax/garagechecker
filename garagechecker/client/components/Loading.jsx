@@ -5,6 +5,7 @@ import { faSpinner, faCheckCircle } from '@fortawesome/fontawesome-free-solid';
 import '../css/Loading.css';
 import '../css/bounceIn.css';
 import TimeAgo from 'react-timeago';
+import socketIOClient from 'socket.io-client'
 
 fontawesome.library.add(faSpinner);
 fontawesome.library.add(faCheckCircle);
