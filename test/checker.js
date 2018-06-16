@@ -1,5 +1,5 @@
 var onoff = require('onoff');
-
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 var confirmGCM = 17;
 var statusGCM = 27;
