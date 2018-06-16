@@ -20,10 +20,10 @@ io.on('connection', socket => {
   })
 })
 
-app.listen(appPort, function() {
+app.listen(process.env.PORT || appPort, function() {
  console.log('App: running at localhost: ' + appPort);
 });
 
-server.listen(serverPort, function() {
+server.listen(process.env.PORT || serverPort, function() {
  console.log('Server: running at localhost: ' + serverPort);
 });
