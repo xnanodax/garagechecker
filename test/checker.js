@@ -5,7 +5,7 @@ var ledGCM = 17;
 var statusGCM = 27;
 var GPIO = onoff.Gpio,
   led = new GPIO(ledGCM, 'out'), //pin 11 = gcm 17 
-  status = new GPIO(statusGCM, 'out'); //pin 13 = gcm 27
+  status = new GPIO(statusGCM, 'in'); //pin 13 = gcm 27
 
 console.log(">> starting file");
 
