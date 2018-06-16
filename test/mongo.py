@@ -25,10 +25,9 @@ post = {
 }
 
 # insert entry into db
-post_id = collection.insert_one(post).inserted_id
-print(post_id)
+# post_id = collection.insert_one(post).inserted_id
+# print(post_id)
 
 # read entry from db
-# last_entry = collection.find_one(sort=[('date', pymongo.DESCENDING)])
-# print(last_entry)
-
+last_entry = collection.find_one(sort=[('date', pymongo.DESCENDING)])
+print(last_entry)

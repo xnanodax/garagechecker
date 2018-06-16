@@ -33,14 +33,26 @@
 ## Common Linux Commands
 + `df -h`: Find how much memory has been used
 
-## Raspberry Pi Connection
+## Raspberry Pi Headless Connection
 
 + Load raspberry pi w/ vnc viewer[gui]
   + `ssh pi@192.168.2.2` or `ssh pi@raspberrypi.local`
   + `vncserver :10`: you can use any port number after the colon
   + using vnc viewer, connect to `192.168.2.2:10`
-+ Turn off: `sudo shutdown -h now`
++ Turn off:
+  `sudo poweroff`
+  `sudo shutdown -h now`
 
+## Upgrade nodejs on Rpi
+
++ nodejs was stuck at version v0.10.29.
++ Calculating upgrade... nodejs is already the newest version.
++ http://thisdavej.com/beginners-guide-to-installing-node-js-on-a-raspberry-pi/#install-node
++ https://stackoverflow.com/questions/10075990/upgrading-node-js-to-latest-version
+
++ `onoff` package works!
+  + pins are based on the GPIO.BCM number, not GPIO.BOARD number.
+  
 ## Steps
 
 - [x] Connect Raspberry Pi Headless with router (06/01/18)
@@ -48,7 +60,11 @@
 - [ ] Connect backend raspberry pi to post to mongo db
   - [ ] pass params into axios or ajax to create post
   - [ ] use pymongo
+  - [ ] Add websockets
 - [ ] read latest entry from mongodb
+
+## Websockets
+Having a hard time finding a python library that allows me to use socket io to emit messages!
 
 ## Python Program
 
