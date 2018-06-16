@@ -8,7 +8,8 @@ class GarageChecker extends React.Component {
     this.state = {
       isClosed: "",
       updatedAt: "",
-      endpoint: "https://garagechecker.herokuapp.com:4001/",
+      // endpoint: "localhost:4001",
+      endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
     };
   }
@@ -55,6 +56,14 @@ class GarageChecker extends React.Component {
     let border = this.state.isClosed === "True" ? "border green" : "border red";
     let time = this.state.updatedAt === "" ? false : this.state.updatedAt;
     const socket = socketIOClient(this.state.endpoint);
+
+    socket.on('connect', function() {
+      console.log("connecting to websocket");
+    })
+
+    socket.on('disconnect', function() {
+      console.log("disconnecting to websocket");
+    })
 
     socket.on('change color', (color)=> {
       document.body.style.backgroundColor = color;

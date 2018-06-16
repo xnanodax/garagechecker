@@ -29,6 +29,26 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+
+    <p id='server-time'></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- var socket = io('localhost:4001'); -->
+    <script>
+      var socket = io.connect('https://garagechecker.herokuapp.com/');
+      var el = document.getElementById('server-time');
+      socket.on('connect', socket => {
+        console.log('New client connected');
+      });
+
+      socket.on('change color', (color) => {
+        console.log('Color changed to: ', color);
+        io.sockets.emit('change color', color);
+      })
+    
+      socket.on('disconnect', () => {
+        console.log('user disconnected');
+      })
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
