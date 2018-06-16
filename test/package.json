@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
     "mongodb": "^3.0.10",
+    "mongoose": "^5.1.5",
     "node-gyp": "^3.7.0",
     "onoff": "^3.1.0",
     "webpack": "^4.12.0"

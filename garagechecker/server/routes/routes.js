@@ -37,7 +37,7 @@ router.post('/api/insert', (req,res) => {
       res.send('record successfully added!');
   });
 
-  res.render('index')
+  // res.render('index')
 })
 
 // router.get('/getAll', (req, res) => {
