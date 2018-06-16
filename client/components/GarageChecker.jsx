@@ -8,7 +8,7 @@ class GarageChecker extends React.Component {
     this.state = {
       isClosed: "",
       updatedAt: "",
-      endpoint: "http://127.0.0.1:4001",
+      endpoint: "https://garagechecker.herokuapp.com:4001/",
       color: "white"
     };
   }
@@ -35,6 +35,7 @@ class GarageChecker extends React.Component {
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText);
         const isClosed = JSON.parse(xhr.responseText).status;
         const updatedAt = JSON.parse(xhr.responseText).created_at;
         const updatedAtFormatted = this.formatTime(new Date(updatedAt));

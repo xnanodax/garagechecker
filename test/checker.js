@@ -19,7 +19,7 @@ var insertNewEntry = function() {
   console.log('insert new entry');
   const xhr = new XMLHttpRequest();
   const method = "POST";
-  const siteURL = "http://127.0.0.1:3002/api/insert"
+  const siteURL = "https://garagechecker.herokuapp.com:4001/api/insert"
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
