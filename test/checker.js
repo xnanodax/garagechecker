@@ -17,7 +17,7 @@ var currStatus = status.readSync();
 
 console.log(">> starting script");
 
-while (true) {
+var checker = function() {
   if (oldStatus != currStatus) {
     if (currStatus > 0) {
       console.log("garage door closed");
@@ -29,8 +29,11 @@ while (true) {
   currStatus = status.readSync();
 }
 
+var interval = setInterval(checker, 2000);
+
+
 process.on('SIGINT', function () {
-  // clearInterval(interval);
+  clearInterval(interval);
   led.writeSync(0);
   led.unexport();
   
