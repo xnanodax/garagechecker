@@ -16,14 +16,13 @@ var currStatus = status.readSync();
 console.log(">> starting script");
 
 var insertNewEntry = function() {
-  console.log('insert new entry');
   const xhr = new XMLHttpRequest();
   const method = "POST";
   const siteURL = "https://garagechecker.herokuapp.com/api/insert"
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log('record instance saved');
+      console.log('\trecord instance saved');
     }
   }
 
