@@ -24,6 +24,6 @@ app.listen(process.env.PORT || appPort, function() {
  console.log('App: running at localhost: ' + appPort);
 });
 
-server.listen(process.env.PORT || serverPort, function() {
+server.listen(serverPort, function() {
  console.log('Server: running at localhost: ' + serverPort);
 });
