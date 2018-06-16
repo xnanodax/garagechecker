@@ -1,0 +1,29 @@
+const http = require('http');
+const socketIO = require('socket.io');
+var app = require('../server/server');
+var appPort = 3002;
+var serverPort = 4001;
+
+const server = http.createServer(app);
+const io = socketIO(server);
+
+io.on('connection', socket => {
+  console.log('New client connected');
+
+  socket.on('change color', (color) => {
+    console.log('Color changed to: ', color);
+    io.sockets.emit('change color', color);
+  })
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  })
+})
+
+app.listen(appPort, function() {
+ console.log('App: running at localhost: ' + appPort);
+});
+
+server.listen(serverPort, function() {
+ console.log('Server: running at localhost: ' + serverPort);
+});

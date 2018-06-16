@@ -15,6 +15,22 @@ var currStatus = status.readSync();
 
 console.log(">> starting script");
 
+var insertNewEntry = function() {
+  console.log('insert new entry');
+  const xhr = new XMLHttpRequest();
+  const method = "POST";
+  const siteURL = "http://127.0.0.1:3002/api/insert"
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log('record instance saved');
+    }
+  }
+
+  xhr.open(method, siteURL);
+  xhr.send();
+}
+
 var checker = function() {
   if (oldStatus != currStatus) {
     if (currStatus > 0) {
@@ -30,20 +46,7 @@ var checker = function() {
 
 var interval = setInterval(checker, 50);
 
-var insertNewEntry = function() {
-  const xhr = new XMLHttpRequest();
-  const method = "POST";
-  const siteURL = "http://127.0.0.1:3002/api/insert"
 
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log('record instance saved');
-    }
-  }
-
-  xhr.open(method, siteURL);
-  xhr.send();
-}
 
 process.on('SIGINT', function () {
   clearInterval(interval);
