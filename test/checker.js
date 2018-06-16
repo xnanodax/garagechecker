@@ -11,7 +11,7 @@ console.log(">> starting file");
 
 var oldStatus = status.readSync();
 led.writeSync(1); //
-var currStatus = status.readySync();
+var currStatus = status.readSync();
 
 
 
@@ -26,7 +26,7 @@ while (true) {
     }
     oldStatus = currStatus;
   }
-  currStatus = status.readySync();
+  currStatus = status.readSync();
 }
 
 process.on('SIGINT', function () {
