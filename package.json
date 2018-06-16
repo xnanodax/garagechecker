@@ -36,7 +36,12 @@
     "start": "nodemon --exec babel-node -- bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "6.10.1",
+    "npm": "6.1.0"
   },
   "main": "client/components/app.js"
 }
