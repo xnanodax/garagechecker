@@ -31,21 +31,22 @@
     </noscript>
 
     <p id='server-time'></p>
-    <script src="https://garagechecker.herokuapp.com/socket.io/socket.io.js"></script>
-    <!-- var socket = io('localhost:4001'); -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://garagechecker.herokuapp.com/socket.io/socket.io.js"></script> -->
+    <!-- var socket = io.connect('https://garagechecker.herokuapp.com/'); -->
     <script>
-      var socket = io.connect('https://garagechecker.herokuapp.com/');
+      var socket = io('localhost:4001');
       var el = document.getElementById('server-time');
       socket.on('connection', socket => {
-        console.log('New client connected');
+        console.log('html New client connected');
 
         socket.on('change color', (color) => {
-          console.log('Color changed to: ', color);
+          console.log('html Color changed to: ', color);
           io.emit('change color', color);
         })
       
         socket.on('disconnect', () => {
-          console.log('user disconnected');
+          console.log('html user disconnected');
         })
       });
 

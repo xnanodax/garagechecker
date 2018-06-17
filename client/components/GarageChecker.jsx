@@ -8,8 +8,8 @@ class GarageChecker extends React.Component {
     this.state = {
       isClosed: "",
       updatedAt: "",
-      // endpoint: "localhost:4001",
-      endpoint: "https://garagechecker.herokuapp.com/",
+      endpoint: "localhost:4001",
+      // endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
     };
   }
@@ -58,15 +58,21 @@ class GarageChecker extends React.Component {
     const socket = socketIOClient(this.state.endpoint);
 
     socket.on('connect', function() {
-      console.log("connecting to websocket");
+      console.log("react: connecting to websocket");
     })
 
     socket.on('disconnect', function() {
-      console.log("disconnecting to websocket");
+      console.log("react: disconnecting to websocket");
     })
 
     socket.on('change color', (color)=> {
+      console.log("react: changing backgroundcolor")
       document.body.style.backgroundColor = color;
+    })
+
+    socket.on('update status', (color)=> {
+      console.log("react: update status")
+      this.fetchLatestEntry();
     })
 
     return (
