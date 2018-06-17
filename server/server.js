@@ -1,5 +1,4 @@
 var express = require('express');
-var router = require('./routes/routes')
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -15,6 +14,5 @@ mongoose.connect('mongodb://garagechecker_test:garagechecker_test@ds229690.mlab.
 
 
 
-app.use('/', router);
 
 module.exports = app;

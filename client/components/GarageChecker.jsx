@@ -6,7 +6,7 @@ class GarageChecker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isClosed: "",
+      status: "",
       updatedAt: "",
       // endpoint: "localhost:4001",
       endpoint: "https://garagechecker.herokuapp.com/",
@@ -23,9 +23,10 @@ class GarageChecker extends React.Component {
     this.setState({ color }, this.send)
   }
 
-  formatTime(date) {
-    const currDate = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
-    const currTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  formatTime(dateString) {
+    const dateObj = new Date(dateString);
+    const currDate = `${dateObj.getMonth()+1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
+    const currTime = `${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()}`;
     return `${currDate} ${currTime}`;
   }
 
@@ -37,10 +38,14 @@ class GarageChecker extends React.Component {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log(xhr.responseText);
-        const isClosed = JSON.parse(xhr.responseText).status;
+        const status = JSON.parse(xhr.responseText).status;
         const updatedAt = JSON.parse(xhr.responseText).created_at;
-        const updatedAtFormatted = this.formatTime(new Date(updatedAt));
-        this.setState({ isClosed, updatedAt: updatedAtFormatted });
+        const updatedAtFormatted = this.formatTime(updatedAt);
+        this.setState(
+          { status, 
+            updatedAt: updatedAtFormatted 
+          }
+      );
       }
     }
     
@@ -53,7 +58,7 @@ class GarageChecker extends React.Component {
   }
 
   render() {
-    let border = this.state.isClosed === "True" ? "border green" : "border red";
+    let border = this.state.status === "True" ? "border green" : "border red";
     let time = this.state.updatedAt === "" ? false : this.state.updatedAt;
     const socket = socketIOClient(this.state.endpoint);
 
@@ -70,9 +75,13 @@ class GarageChecker extends React.Component {
       document.body.style.backgroundColor = color;
     })
 
-    socket.on('update status', (color)=> {
-      console.log("react: update status")
-      this.fetchLatestEntry();
+    socket.on('update door status', (dbObj)=> {
+      console.log("react: update door status", dbObj);
+      this.setState(
+        { status: dbObj.status, 
+          updatedAt: this.formatTime(dbObj.created_at)
+        }
+      );
     })
 
     return (

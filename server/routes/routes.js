@@ -12,33 +12,40 @@ router.get('/latest', (req, res) => {
   res.render('index')
 })
 
+
 router.get('/api/latest', (req, res) => {
-   Record.findOne({}, {}, { sort: { '_id': -1 } }, function(err, expenses) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(expenses);
-    }
-   });
+  Record.findOne({}, {}, { sort: { '_id': -1 } }, function(err, newStatus) {
+   if (err) {
+     res.send(err);
+   } else {
+     res.json(newStatus);
+   }
+  });
 })
 
 
-
-module.exports = router;
-
-router.post('/api/insert', (req,res) => {
-  var record = new Record();
-  record.status = 'True';
-  record.created_at = new Date;
-
-  record.save(err => {
-      if (err)
-        res.send(err);
-      res.send('record successfully added!');
-  });
 
   // res.render('index')
-})
+
+module.exports = function(io) {
+  router.post('/api/insert', (req,res) => {
+    var record = new Record();
+    record.status = 'True';
+    record.created_at = new Date;
+  
+    record.save(err => {
+      if (err) {
+        res.send(err);
+      } else {
+        console.log('routes update door status: ', record);
+        io.emit('update door status', record);
+        res.send('record successfully added!');  
+      }
+    });
+  })
+
+  return router;
+}
 
 // router.get('/getAll', (req, res) => {
 //   var monthRec = req.query.month;
