@@ -29,6 +29,7 @@ router.get('/api/latest', (req, res) => {
 
 module.exports = function(io) {
   router.post('/api/insert', (req,res) => {
+    console.log("routes", req.query);
     var record = new Record(
       { status: req.query.status, 
         created_at: new Date()
