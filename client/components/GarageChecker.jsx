@@ -8,8 +8,8 @@ class GarageChecker extends React.Component {
     this.state = {
       isClosed: "",
       updatedAt: "",
-      endpoint: "localhost:4001",
-      // endpoint: "https://garagechecker.herokuapp.com/",
+      // endpoint: "localhost:4001",
+      endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
     };
   }
