@@ -23,7 +23,7 @@ var insertNewEntry = function(doorStatus) {
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log('\trecord instance saved');
+      console.log('  record instance saved');
     }
   }
 
@@ -32,20 +32,22 @@ var insertNewEntry = function(doorStatus) {
 }
 
 var checker = function() {
+  console.log("old and new status", oldStatus, currStatus)
+
   if (oldStatus != currStatus) {
     if (currStatus > 0) {
       console.log("garage door closed");
-      insertNewEntry('True');
+      // insertNewEntry('True');
     } else {
       console.log("garage door open");
-      insertNewEntry('False');
+      // insertNewEntry('False');
     }
     oldStatus = currStatus;
   }
   currStatus = status.readSync();
 }
 
-var interval = setInterval(checker, 50);
+var interval = setInterval(checker, 100);
 
 
 
