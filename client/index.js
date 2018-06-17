@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker'
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root')
   ReactDOM.render(<Root />, root);
-  registerServiceWorker();
+  // registerServiceWorker();
 }
 );
 
