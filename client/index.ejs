@@ -36,18 +36,20 @@
     <script>
       var socket = io.connect('https://garagechecker.herokuapp.com/');
       var el = document.getElementById('server-time');
-      socket.on('connect', socket => {
+      socket.on('connection', socket => {
         console.log('New client connected');
+
+        socket.on('change color', (color) => {
+          console.log('Color changed to: ', color);
+          io.emit('change color', color);
+        })
+      
+        socket.on('disconnect', () => {
+          console.log('user disconnected');
+        })
       });
 
-      socket.on('change color', (color) => {
-        console.log('Color changed to: ', color);
-        io.sockets.emit('change color', color);
-      })
-    
-      socket.on('disconnect', () => {
-        console.log('user disconnected');
-      })
+
     </script>
     <div id="root"></div>
     <!--
