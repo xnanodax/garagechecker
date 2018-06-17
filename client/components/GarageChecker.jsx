@@ -13,6 +13,25 @@ class GarageChecker extends React.Component {
       endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
     };
+
+    const socket = socketIOClient(this.state.endpoint);
+
+    socket.on('connect', function() {
+      console.log("react: connecting to websocket");
+    })
+
+    socket.on('disconnect', function() {
+      console.log("react: disconnecting to websocket");
+    })
+
+    socket.on('is door closed', (dbObj)=> {
+      console.log("react: update door status", dbObj);
+      this.setState(
+        { status: dbObj.status, 
+          updatedAt: this.formatTime(dbObj.created_at)
+        }
+      );
+    })
   }
 
   send() {
@@ -61,24 +80,6 @@ class GarageChecker extends React.Component {
   render() {
     let border = this.state.status === "True" ? "border green" : "border red";
     let time = this.state.updatedAt === "" ? false : this.state.updatedAt;
-    const socket = socketIOClient(this.state.endpoint);
-
-    socket.on('connect', function() {
-      console.log("react: connecting to websocket");
-    })
-
-    socket.on('disconnect', function() {
-      console.log("react: disconnecting to websocket");
-    })
-
-    socket.on('is door closed', (dbObj)=> {
-      console.log("react: update door status", dbObj);
-      this.setState(
-        { status: dbObj.status, 
-          updatedAt: this.formatTime(dbObj.created_at)
-        }
-      );
-    })
 
     return (
       <div className={border}>
