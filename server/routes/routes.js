@@ -29,16 +29,17 @@ router.get('/api/latest', (req, res) => {
 
 module.exports = function(io) {
   router.post('/api/insert', (req,res) => {
-    var record = new Record();
-    record.status = 'True';
-    record.created_at = new Date;
+    var record = new Record(
+      { status: req.query.status, 
+        created_at: new Date()
+      }
+    );
   
     record.save(err => {
       if (err) {
         res.send(err);
       } else {
-        console.log('routes update door status: ', record);
-        io.emit('update door status', record);
+        io.emit('is door closed', record);
         res.send('record successfully added!');  
       }
     });

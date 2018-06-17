@@ -12,14 +12,9 @@ var router = require('../server/routes/routes');
 io.on('connection', socket => {
   console.log('ww New client connected');
 
-  socket.on('change color', (color) => {
-    console.log('ww Color changed to: ', color);
-    io.emit('change color', color);
-  })
-
-  socket.on('update door status', (status) => {
-    console.log('ww Color changed to: ', status);
-    io.emit('update door status', status);
+  socket.on('is door closed', (status) => {
+    console.log('ww door is closed: ', status);
+    io.emit('is door closed', status);
   })
 
   socket.on('disconnect', () => {

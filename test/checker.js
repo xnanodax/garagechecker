@@ -15,9 +15,10 @@ var currStatus = status.readSync();
 
 console.log(">> starting script");
 
-var insertNewEntry = function() {
+var insertNewEntry = function(doorStatus) {
   const xhr = new XMLHttpRequest();
   const method = "POST";
+  var params = JSON.stringify({ status: doorStatus });    
   const siteURL = "https://garagechecker.herokuapp.com/api/insert"
 
   xhr.onreadystatechange = () => {
@@ -27,16 +28,17 @@ var insertNewEntry = function() {
   }
 
   xhr.open(method, siteURL);
-  xhr.send();
+  xhr.send(params);
 }
 
 var checker = function() {
   if (oldStatus != currStatus) {
     if (currStatus > 0) {
       console.log("garage door closed");
-      insertNewEntry();
+      insertNewEntry('True');
     } else {
       console.log("garage door open");
+      insertNewEntry('False');
     }
     oldStatus = currStatus;
   }

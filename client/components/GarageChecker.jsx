@@ -8,6 +8,7 @@ class GarageChecker extends React.Component {
     this.state = {
       status: "",
       updatedAt: "",
+      loading: true,
       // endpoint: "localhost:4001",
       endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
@@ -70,12 +71,7 @@ class GarageChecker extends React.Component {
       console.log("react: disconnecting to websocket");
     })
 
-    socket.on('change color', (color)=> {
-      console.log("react: changing backgroundcolor")
-      document.body.style.backgroundColor = color;
-    })
-
-    socket.on('update door status', (dbObj)=> {
+    socket.on('is door closed', (dbObj)=> {
       console.log("react: update door status", dbObj);
       this.setState(
         { status: dbObj.status, 
@@ -87,12 +83,8 @@ class GarageChecker extends React.Component {
     return (
       <div className={border}>
         <h2 className="title">Garage Checker</h2>
-        <UpdateStatus time={time}/>
+        <UpdateStatus time={time} status={this.state.status}/>
 
-        <div style={{ textAlign: "center" }}>
-          <button id="gray" onClick={() => this.setColor('gray')}>Gray</button>
-          <button id="white" onClick={() => this.setColor('white')}>White</button>
-        </div>
       </div>
     );
   }
