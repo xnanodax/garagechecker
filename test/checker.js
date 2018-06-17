@@ -21,6 +21,10 @@ var insertNewEntry = function(doorStatus) {
   var params = JSON.stringify({ status: doorStatus });    
   const siteURL = "https://garagechecker.herokuapp.com/api/insert"
 
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Content-length", params.length);
+  xhr.setRequestHeader("Connection", "close");
+
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
       console.log('  record instance saved');
