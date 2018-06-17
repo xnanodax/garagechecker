@@ -18,8 +18,7 @@ console.log(">> starting script");
 var insertNewEntry = function(doorStatus) {
   const xhr = new XMLHttpRequest();
   const method = "POST";
-  var params = JSON.stringify({ status: doorStatus });    
-  const siteURL = "https://garagechecker.herokuapp.com/api/insert"
+  const siteURL = `https://garagechecker.herokuapp.com/api/insert?status=${doorStatus}`
 
   
   xhr.onreadystatechange = () => {
@@ -29,10 +28,7 @@ var insertNewEntry = function(doorStatus) {
   }
   
   xhr.open(method, siteURL);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.setRequestHeader("Content-length", params.length);
-  xhr.setRequestHeader("Connection", "close");
-  xhr.send(params);
+  xhr.send();
 }
 
 var checker = function() {
