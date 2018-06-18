@@ -48,7 +48,7 @@ var checker = function() {
   currStatus = status.readSync();
 }
 
-var interval = setInterval(checker, 2000);
+var interval = setInterval(checker, 500);
 
 
 
