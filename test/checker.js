@@ -54,10 +54,10 @@ var interval = setInterval(checker, 750);
 
 process.on('SIGINT', function () {
   clearInterval(interval);
-  confirm.writeSync(0);
+  // confirm.writeSync(0);
   confirm.unexport();
   
-  status.writeSync(0);
+  // status.writeSync(0);
   status.unexport();
   
   console.log('Bye, bye!');
