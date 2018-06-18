@@ -32,7 +32,7 @@ var insertNewEntry = function(doorStatus) {
 }
 
 var checker = function() {
-  console.log("  >> old and new status", oldStatus, currStatus)
+  // console.log("  >> old and new status", oldStatus, currStatus)
 
   if (oldStatus != currStatus) {
     if (currStatus > 0) {
@@ -48,7 +48,7 @@ var checker = function() {
   currStatus = status.readSync();
 }
 
-var interval = setInterval(checker, 500);
+var interval = setInterval(checker, 750);
 
 
 
