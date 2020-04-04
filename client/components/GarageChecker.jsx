@@ -9,8 +9,8 @@ class GarageChecker extends React.Component {
       status: "",
       updatedAt: "",
       loading: true,
-      // endpoint: "localhost:4001",
-      endpoint: "https://garagechecker.herokuapp.com/",
+      endpoint: "localhost:4001",
+      // endpoint: "https://garagechecker.herokuapp.com/",
       color: "white"
     };
 
@@ -89,6 +89,8 @@ class GarageChecker extends React.Component {
       </div>
     );
   }
+
+
 
 }
 

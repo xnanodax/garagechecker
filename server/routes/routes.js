@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var Record = require('../../models/Record');
+import { transporter, mailOptions } from '../mailer'; 
 
 router.get('/', (req, res) => {
   res.render('index')
@@ -11,7 +12,6 @@ router.get('/', (req, res) => {
 router.get('/latest', (req, res) => {
   res.render('index')
 })
-
 
 router.get('/api/latest', (req, res) => {
   Record.findOne({}, {}, { sort: { '_id': -1 } }, function(err, newStatus) {
@@ -23,9 +23,6 @@ router.get('/api/latest', (req, res) => {
   });
 })
 
-
-
-  // res.render('index')
 
 module.exports = function(io) {
   router.post('/api/insert', (req,res) => {
@@ -41,7 +38,15 @@ module.exports = function(io) {
         res.send(err);
       } else {
         io.emit('is door closed', record);
-        res.send('record successfully added!');  
+        res.send('routes: record successfully added!');
+        console.log('transporter', transporter);
+        transporter.sendMail(mailOptions, function(err, info) {
+          if (err) {
+            console.log("mail err", err);
+          } else {
+            console.log("mail success", info);
+          }
+        })  
       }
     });
   })
